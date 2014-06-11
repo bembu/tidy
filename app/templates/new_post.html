@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-sm-12">
+  <h1>Create new post</h1>
+</div>
+
+<div class="divider">
+  <div class="col-sm-12"><hr></div>
+</div>
+
+<form role="form" method="POST" action="/newpost" enctype=multipart/form-data>
+
+  <div class="row">
+    <div class="col-sm-4">
+
+      {{ form.csrf_token }}
+      <div class="form-group">
+        {{ form.title.label }} {{ form.title(size=20, class="form-control") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.tags.label }} {{ form.tags(size=256, class="form-control") }}
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-7">
+
+      <div class="form-group">
+        {{ form.description.label }} {{ form.description(size=256, class="form-control", rows="5") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.body.label }} {{ form.body(size=32768, class="form-control", rows="10") }}
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <input type=file name=file class="btn btn-success" title="Upload a thumbnail image"><hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <input type="submit" class="btn btn-primary" value="Create">
+    </div>
+  </div>
+
+</form>
+
+{% endblock %}

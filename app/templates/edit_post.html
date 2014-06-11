@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="col-sm-12">
+  <h1>Edit Post</h1>
+</div>
+
+<div class="divider">
+  <div class="col-sm-12"><hr></div>
+</div>
+
+<form role="form" method="POST" action="" enctype=multipart/form-data>
+
+  {{ form.csrf_token }}
+  <div class="row">
+    <div class="col-sm-4">
+
+      <div class="form-group">
+        {{ form.title.label }} {{ form.title(size=20, class="form-control", id="title-form") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.slug.label }} {{ form.slug(size=256, class="form-control", id="slug-form") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.tags.label }} {{ form.tags(size=256, class="form-control") }}
+        <span class="help-block">Use space to separate tags.</span>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-6">
+
+      <div class="form-group">
+        {{ form.description.label }} {{ form.description(size=256, class="form-control", rows="5") }}
+      </div>
+
+      <div class="form-group">
+        {{ form.body.label }} {{ form.body(size=32768, class="form-control", rows="10") }}
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <input type=file name=file class="btn btn-success" title="Upload a thumbnail image"><hr>
+    </div>
+  </div>
+
+  <div class="row">
+  <div class="col-sm-6">
+    <input type="submit" class="btn btn-primary" value="Edit">
+  </div>
+  </div>
+
+</form>
+
+{% endblock %}

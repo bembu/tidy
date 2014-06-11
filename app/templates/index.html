@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block header %}
+
+    <div class="col-sm-12" id="featured">
+    <div class=""> <!-- .page-header -->
+    <h1>Welcome to my awesome blog!</h1>
+        <p>Here you can find a lot of useful information about anything.
+            Please check out the sidebar for more info!</p>
+
+    {% if query_tag %}
+    <h3 class="text-success">
+        Showing all posts tagged as <span class="label label-default">{{ query_tag }}</span>
+    </h3>
+    {% endif %}
+        </div>
+        </div>
+
+{% endblock %}
+
+    {% block content %}
+
+    <div class="col-sm-12" id="stories">
+        <div class="page-header text-muted divider">
+            Blog Posts
+        </div>
+    </div>
+
+    {% for post in posts.items %}
+
+    <div class="row">
+    <div class="col-sm-7">
+            <h3><a href="{{ url_for('posts', slug=post.slug) }}" class="">{{ post.title }}</a></h3>
+            {{ post.description }}
+            <h4>
+                <small class="text-muted">{{ post.timestamp.strftime('%d.%m.%Y %H:%M') }} • by {{ get_username(post.user_id) }} •
+                    <a href="{{ url_for('posts', slug=post.slug) }}" class="">Read More</a>
+                </small>
+            </h4>
+        </div>
+        <div class="col-sm-4 pull-right">
+            <a href="{{ url_for('posts', slug=post.slug) }}" class="pull-right"><img src="{{ post.thumbnail }}" class="img-thumbnail"></a>
+        </div>
+    </div>
+
+    {% endfor %}
+
+    {% endblock %}
+
+    {% block footer %}
+
+    <div class="divider">
+        <div class="col-sm-12"><hr>
+            <div class="padded-footer">
+                <a href="{{ url_for('index', page = posts.prev_num) }}" class="btn btn-sm btn-primary btn-pagi {% if not posts.has_prev %}disabled{% endif %}">Newer</a>
+                <a href="{{ url_for('index', page = posts.next_num) }}" class="btn btn-sm btn-primary btn-pagi {% if not posts.has_next %}disabled{% endif %}">Older</a>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

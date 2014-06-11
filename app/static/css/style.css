@@ -1,0 +1,104 @@
+.wrapper, .row {
+   height: 100%;
+   margin-left:0;
+   margin-right:0;
+}
+
+.wrapper:before, .wrapper:after,
+.column:before, .column:after {
+    content: "";
+    display: table;
+}
+
+.wrapper:after,
+.column:after {
+    clear: both;
+}
+
+.column {
+    height: 100%;
+    overflow: auto;
+    *zoom:1;
+}
+
+.column .padding {
+    padding: 20px;
+}
+
+.box {
+    bottom: 0; /* increase for footer use */
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-image:url('/static/img/night_bg.png');
+    background-size:cover;
+    background-attachment:fixed;
+}
+
+.divider {
+    margin-top:32px;
+}
+
+#main {
+    background-color:#fefefe;
+}
+#main .img-thumbnail{
+  margin:36px;
+  height:120px;
+  width:120px;
+}
+
+#sidebar, #sidebar a {
+    color:#ffffff;
+    background-color:transparent;
+    text-shadow:1px 0 1px #888888;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    text-align:center;
+    margin:0 auto;
+    margin-top:30px;
+    font-size:26px;
+  }
+}
+
+.col-sm-9.full {
+    width: 100%;
+}
+
+small.text-muted {
+  font-family:courier,courier-new,monospace;
+}
+
+.sidebar-padded {
+    padding: 15px;
+}
+
+.btn-pagi {
+    width:100px;
+}
+
+.padded-footer {
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+
+.ingress {
+  font-size: 1.2em;
+}
+
+.file-input-name {
+  font-weight: bold;
+}
+
+.red-text {
+  font-size: 0.8em;
+  color: red;
+  vertical-align: 5px;
+}
+
+.tag-link:hover {
+  text-decoration:none;
+}

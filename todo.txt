@@ -1,0 +1,26 @@
+TODO:
+
+- "deleted" items are just "disabled"
+- maybe image upload for posts
+- Check that the password hashification works
+- check for a unique title / slug (otherwise error.)
+
+- About me -page!
+- Change the password (or send a reset request via email)
+
+---
+
+from app import db, models
+
+u = models.User.query.filter_by(username="Bembu")
+
+t = Tag(name="python")
+p = models.Post.query.filter_by(user_id = u.id)
+
+p.tags.append(t)
+
+db.session.commit()
+
+###
+
+models.Post.query.filter(models.Tag.name=="python")).all()

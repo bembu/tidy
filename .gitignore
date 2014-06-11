@@ -1,0 +1,5 @@
+*.pyc
+*.pyo
+/flask
+/db_repository
+*.db
