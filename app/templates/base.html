@@ -34,23 +34,26 @@
 
          <ul class="nav">
 
-          <li><a href="/">Front Page</a>
+          <li><a href="{{ url_for('index') }}">Front Page</a>
+          </li>
+
+          <li><a href="{{ url_for('about') }}">About</a>
           </li>
 
           {% if not g.user.is_authenticated() %}
-          <li><a href="/login">Login</a>
+          <li><a href="{{ url_for('login') }}">Login</a>
           </li>
           {% endif %}
 
           {% if g.user.is_authenticated() %}
-          <li><a href="/newpost">New Post</a>
+          <li><a href="{{ url_for('new_post') }}">New Post</a>
           </li>
           {% endif %}
 
           {% if g.user.role == 1 %}
-          <li><a href="/new">New User</a>
+          <li><a href="{{ url_for('new_user') }}">New User</a>
           </li>
-          <li><a href="/admin">Admin</a>
+          <li><a href="{{ url_for('admin') }}">Admin</a>
           </li>
           {% endif %}
 

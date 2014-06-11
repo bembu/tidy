@@ -34,10 +34,13 @@ def admin_required(f):
 @app.route('/')
 @app.route('/<int:page>')
 def index(page=1):
+    # note: currently we just filter the 'about' page out
     posts = models.Post.query.order_by(desc(models.Post.timestamp))\
-    .paginate(page, POSTS_PER_PAGE, False) #.all()
+    .filter(models.Post.slug != "about")\
+    .paginate(page, POSTS_PER_PAGE, False)
 
-    return render_template("index.html", posts=posts, get_username=get_username)
+    return render_template("index.html", posts=posts, \
+                           get_username=get_username)
 
 @app.route('/tag/<tagname>')
 @app.route('/tag/<tagname>/<int:page>')
@@ -48,11 +51,20 @@ def tagged_posts(tagname, page=1):
     .order_by(desc(models.Post.timestamp))\
     .paginate(page, POSTS_PER_PAGE, False)
 
-    return render_template("index.html", posts=posts, get_username=get_username, query_tag=tagname)
+    return render_template("index.html", posts=posts, \
+                           get_username=get_username, query_tag=tagname)
 
 @app.route('/posts/<slug>')
 def posts(slug):
     post = models.Post.query.filter_by(slug=slug).first()
+    return render_template("post.html", post=post, get_username=get_username)
+
+# A special 'About' page
+@app.route('/about')
+def about():
+    post = models.Post.query.filter_by(slug='about').first()
+    if not post:
+        return redirect(url_for("index"))
     return render_template("post.html", post=post, get_username=get_username)
 
 @app.route('/posts/<slug>/edit', methods=["GET", "POST"])
@@ -70,7 +82,8 @@ def edit_post(slug):
 
     tags = TAG_DELIM.join(p.get_tags_str())
 
-    form = NewPostForm(title=p.title, body=p.body, slug=p.slug, description=p.description, tags=tags)
+    form = NewPostForm(title=p.title, body=p.body, slug=p.slug, \
+                       description=p.description, tags=tags)
 
     if form.validate_on_submit():
         p.title = form.title.data
@@ -194,7 +207,13 @@ def admin():
     return render_template("admin.html", posts=posts, users=users, \
                            get_username=get_username)
 
-#@app.route('/upload', methods=['GET', 'POST'])
+@app.route('/uploads/<path:filename>')
+def host_img(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
+
+# HELPER FUNCITIONS HERE
+# TODO: move these to helper.py
+
 def upload_file(request):
     if request.method == 'POST' and 'file' in request.files:
         file = request.files['file']
@@ -207,12 +226,6 @@ def upload_file(request):
             flash(u'File uploaded successfully.', 'alert-success')
 
             return filename
-
-@app.route('/uploads/<path:filename>')
-def host_img(filename):
-    return send_from_directory(UPLOAD_FOLDER, filename)
-
-# HELPER FUNCITIONS HERE
 
 def crop_and_save(filename):
     """ crops the image better suited for thumbnail and saves it """
