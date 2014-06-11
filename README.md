@@ -2,6 +2,21 @@
 
 A neat and tidy Flask-powered blog engine
 
+#### Currently there is a support for:
+* Easy to use, clean style
+* User Accounts
+    * Two user roles: admin and normal user. Both can create and edit posts, but only admin can manage users and posts (i.e. delete)
+* Blog posts are written in Markdown. All symbols supported via flask-markdown library
+* RESTful URLS with easily readable post title slugs
+* Users can upload thumbnail images to their blog posts
+* Authors can tag posts into different categories. USers can view posts by tags.
+* Simple, working pagination
+
+#### Possible additions in the future:
+* About Me -page
+* Comments (probably Disqus)
+* Account management (i.e. password resets)
+
 ## Initial Steps
 
 There are a few steps you need to take in order to get the blog to work on a development server
