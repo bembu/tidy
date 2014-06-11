@@ -4,6 +4,7 @@ TODO:
 - maybe image upload for posts
 - Check that the password hashification works
 - check for a unique title / slug (otherwise error.)
+- check for form injections
 
 - About me -page!
 - Change the password (or send a reset request via email)
