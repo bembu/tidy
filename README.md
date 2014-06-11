@@ -2,7 +2,7 @@
 
 A neat and tidy Flask-powered blog engine
 
-![](https://github.com/bembu/tidy/master/images/preview.png)
+![](https://raw.githubusercontent.com/bembu/tidy/master/images/preview.png)
 
 #### Currently there is a support for:
 * Easy to use, clean style
