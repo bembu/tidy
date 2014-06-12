@@ -242,7 +242,11 @@ def user_exists(username):
     return (models.User.query.filter_by(username=username).first() != None)
 
 def get_username(id):
-    return models.User.query.get(int(id)).username
+    # edit this to use the saved username
+    if not id:
+        return "deleted"
+    user = models.User.query.get(int(id))
+    return user.username
 
 @app.before_request
 def before_request():

@@ -1,5 +1,7 @@
 TODO:
 
+BUG THERE: fix the fucking bug: if you delete a user, it crashes for (no_user_found)
+
 - "deleted" items are just "disabled"
 - maybe image upload for posts
 - Check that the password hashification works
@@ -8,6 +10,9 @@ TODO:
 
 - About me -page!
 - Change the password (or send a reset request via email)
+- fix the front page previews not showing markdown (bugi vai feature?)
+- remove the bigger uploaded image after conversion (?)
+- favicon
 
 ---
 
