@@ -105,7 +105,7 @@ small.text-muted {
 .red-text {
   font-size: 0.8em;
   color: red;
-  vertical-align: 5px;
+  vertical-align: 6px;
 }
 
 .tag-link:hover {
