@@ -8,11 +8,12 @@ BUG THERE: fix the fucking bug: if you delete a user, it crashes for (no_user_fo
 - check for a unique title / slug (otherwise error.)
 - check for form injections
 
-- About me -page!
 - Change the password (or send a reset request via email)
 - fix the front page previews not showing markdown (bugi vai feature?)
 - remove the bigger uploaded image after conversion (?)
 - favicon
+
+- add CSRF tokens (https://flask-wtf.readthedocs.org/en/latest/csrf.html#ajax)
 
 ---
 

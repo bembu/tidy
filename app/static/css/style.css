@@ -102,10 +102,10 @@ small.text-muted {
   font-weight: bold;
 }
 
-.red-text {
+.close-btn {
   font-size: 0.8em;
   color: red;
-  vertical-align: 6px;
+  float:right;
 }
 
 .tag-link:hover {
