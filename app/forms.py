@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import TextField, PasswordField, TextAreaField
+from wtforms import TextField, PasswordField, TextAreaField, BooleanField
 from wtforms.validators import DataRequired
 from app import models
 
@@ -37,6 +37,7 @@ class NewUserForm(Form):
     username = TextField('Username', [DataRequired()])
     password = PasswordField('Password', [DataRequired()])
     password2 = PasswordField('Password', [DataRequired()])
+    admin = BooleanField('Admin User')
 
     def __init__(self, *args, **kwargs):
         Form.__init__(self, *args, **kwargs)

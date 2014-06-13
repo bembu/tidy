@@ -13,11 +13,21 @@
         $('#slug-form').val(slugify($(this).val()));
     });
 
+    function flash(msg, category) {
+        html = "<div class='alert alert-dismissable " + category + "'>\
+                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>\
+                " + msg + "\
+                </div>"
+
+        $('#flash-msg').html(html);
+    }
+
     // enable bootstrap's file inputs
     $('input[type=file]').bootstrapFileInput();
 
     $('.remove-post').click(function() {
-        var id = $(this).parent().attr('id');
+        var par = $(this).parent()
+        var id = par.attr('id');
         $.ajax({
             url: '',
             type: 'POST',
@@ -27,13 +37,16 @@
             },
 
             success: function (result) {
-                console.log("deleted post " + id);
+                if (result != 'error') {
+                    par.parent().hide()
+                };
             }
         });
     });
 
     $('.remove-user').click(function() {
-        var id = $(this).parent().attr('id');
+        var par = $(this).parent()
+        var id = par.attr('id');
         $.ajax({
             url: '',
             type: 'POST',
@@ -43,8 +56,17 @@
             },
 
             success: function (result) {
-                console.log("deleted user " + id);
+                // TODO: perhaps handle the error a better way?
+                if (result != 'error') {
+                    par.parent().hide()
+                }
+                else {
+                    flash("An admin user can not be deleted.", "alert-warning");
+                };
             }
         });
     });
+
+
+
 })(window.jQuery);

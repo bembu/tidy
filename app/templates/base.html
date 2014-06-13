@@ -66,7 +66,7 @@
       <!-- main -->
       <div class="column col-sm-9" id="main">
         <div class="padding">
-          <div class="full col-sm-9">
+          <div class="full col-sm-9" id="flash-msg">
 
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
@@ -82,6 +82,7 @@
 
             {% endif %}
             {% endwith %}
+          </div>
 
             {% block header %}
             {% endblock %}
@@ -94,11 +95,10 @@
 
           </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
-</div>
 
 <script src="/static/js/vendor/jquery.js"></script>
 <script src="/static/js/vendor/bootstrap.file-input.js"></script>

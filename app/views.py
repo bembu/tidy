@@ -164,7 +164,10 @@ def new_user():
     if form.validate_on_submit():
 
         if not user_exists(form.username.data):
-            u = models.User(username=form.username.data, role=models.ROLE_USER)
+            role = models.ROLE_USER
+            if form.admin.data == True:
+                role = models.ROLE_ADMIN
+            u = models.User(username=form.username.data, role=role)
             u.hash_password(form.password.data)
 
             db.session.add(u)
@@ -200,9 +203,11 @@ def admin():
             id = request.form.get('id')
             u = models.User.query.filter_by(id=id).first()
 
-            if u.role != 1:
+            if u.role != ROLE_ADMIN:
                 db.session.delete(u)
                 db.session.commit()
+            else:
+                return "error"
 
     return render_template("admin.html", posts=posts, users=users, \
                            get_username=get_username)

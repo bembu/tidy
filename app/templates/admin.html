@@ -8,35 +8,45 @@
   </div>
 
   <div class="divider">
-  <div class="col-sm-12"><hr></div>
+    <div class="col-sm-12"><hr></div>
   </div>
 </div>
 
 <div class="row">
+
   <div class="col-sm-4">
     <div class="list-group">
+
       <h4 class="list-group-item-heading">Manage posts:</h4>
+
       {% for post in posts %}
       <a href="{{ url_for("posts", slug=post.slug) }}" class="list-group-item">{{ post.title }}
         <span class="text-muted"> by {{ get_username(post.user_id) }}</span>
         <button id="{{ post.slug }}" type="button" class="close" data-dismiss="alert">
           <span class="glyphicon glyphicon-remove red-text remove-post"></span>
-        </button></a>
+        </button>
+      </a>
         {% endfor %}
+
       </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="list-group">
+
+        <h4 class="list-group-item-heading">Manage users:</h4>
+
+        {% for user in users %}
+        <a href="#" class="list-group-item">{{ user.username }}
+          {% if user.role == 1 %}&nbsp;<span class="glyphicon glyphicon-eye-open"></span>{% endif %}
+          <button id="{{ user.id }}" type="button" class="close">
+            <span class="glyphicon glyphicon-remove red-text remove-user"></span>
+          </button></a>
+          {% endfor %}
+
+        </div>
+      </div>
+
   </div>
 
-  <div class="col-sm-4">
-    <div class="list-group">
-      <h4 class="list-group-item-heading">Manage users:</h4>
-      {% for user in users %}
-      <a href="#" class="list-group-item">{{ user.username }}
-        <button id="{{ user.id }}" type="button" class="close" data-dismiss="alert">
-          <span class="glyphicon glyphicon-remove red-text remove-user"></span>
-        </button></a>
-        {% endfor %}
-      </div>
-  </div>
-</div>
-
-{% endblock %}
+    {% endblock %}
