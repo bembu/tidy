@@ -4,9 +4,8 @@
 
     <div class="col-sm-12" id="featured">
     <div class=""> <!-- .page-header -->
-    <h1>Welcome to my awesome blog!</h1>
-        <p>Here you can find a lot of useful information about anything.
-            Please check out the sidebar for more info!</p>
+    <h1>{{ config.WELCOME }}</h1>
+        <p>{{ config.DESCRIPTION }}</p>
 
     {% if query_tag %}
     <h3 class="text-success">

@@ -98,9 +98,10 @@
         });
     });
 
-    $('.click-user').click(function() {
+    $('.click-user').click(function(event) {
         var ths = $(this)
         var id = $(this).attr('id');
+        event.preventDefault();
 
         $.ajax({
             url: '',

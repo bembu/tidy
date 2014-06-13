@@ -12,8 +12,12 @@ POSTS_PER_PAGE = 5
 UPLOAD_FOLDER = os.path.join(basedir, 'app', 'uploads')
 THUMB_FOLDER = os.path.join(basedir, 'app', 'uploads', 'thumbs')
 DEFAULT_THUMB = "/static/img/default_thumb.png"
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 
 MAX_FILE_SIZE = 2 * 1024 * 1024 # 2 MB
 
 TAG_DELIM = " "
+
+TITLE = "Bembu's blog"
+DESCRIPTION = "Welcome to my almighty blog."
+WELCOME = "Welcome to my cool blog."

@@ -8,7 +8,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bembu's blog</title>
+  <title>{{ config.TITLE }}</title>
 
   <link rel="stylesheet" href="/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/style.css">
@@ -24,7 +24,7 @@
         <!-- sidebar -->
         <div class="column col-sm-3" id="sidebar">
 
-          <h3 class="sidebar-padded">Bembu's blog</h3>
+          <h3 class="sidebar-padded">{{ config.TITLE }}</h3>
 
           {% if g.user.is_authenticated() %}
           <h4><small class="sidebar-padded text-muted">
