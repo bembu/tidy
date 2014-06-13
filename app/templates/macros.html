@@ -1,0 +1,26 @@
+
+{% macro admin_button(data, type) %}
+
+{% if type == 'toggle-admin' %}
+    <button id="{{ data.id }}" type="button" class="close">
+    {% if data.role == 1 %}
+    <span class="glyphicon glyphicon-eye-close admin-btn red toggle-admin"></span>
+    {% else %}
+    <span class="glyphicon glyphicon-eye-open admin-btn green toggle-admin"></span>
+    {% endif %}
+    </button>
+{% endif %}
+
+{% if type == 'remove-user' %}
+    <button id="{{ data.id }}" type="button" class="close">
+        <span class="glyphicon glyphicon-remove admin-btn red remove-user"></span>
+    </button>
+{% endif %}
+
+{% if type == 'remove-post' %}
+    <button id="{{ data }}" type="button" class="close" data-dismiss="alert">
+        <span class="glyphicon glyphicon-remove admin-btn red remove-post"></span>
+    </button>
+{% endif %}
+
+{% endmacro %}

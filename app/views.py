@@ -209,6 +209,24 @@ def admin():
             else:
                 return "error"
 
+        # delete posts
+        if request.form.get('type') == "TOGGLE_ADMIN":
+            id = request.form.get('id')
+            u = models.User.query.filter_by(id=id).first()
+            role = u.role
+
+            # toggle the user role
+            if role == ROLE_ADMIN:
+                u.role = ROLE_USER
+            else:
+                u.role = ROLE_ADMIN
+
+            db.session.commit()
+
+            return str(u.role)
+
+
+
     return render_template("admin.html", posts=posts, users=users, \
                            get_username=get_username)
 

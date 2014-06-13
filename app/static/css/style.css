@@ -102,10 +102,17 @@ small.text-muted {
   font-weight: bold;
 }
 
-.close-btn {
+.admin-btn {
   font-size: 0.8em;
-  color: red;
   float:right;
+}
+
+.red {
+  color:red;
+}
+
+.green {
+  color:green;
 }
 
 .tag-link:hover {

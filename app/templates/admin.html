@@ -1,3 +1,5 @@
+{% from "macros.html" import admin_button with context %}
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -22,9 +24,7 @@
       {% for post in posts %}
 
       <a href="{{ url_for("posts", slug=post.slug) }}" class="list-group-item">
-        <button id="{{ post.slug }}" type="button" class="close" data-dismiss="alert">
-          <span class="glyphicon glyphicon-remove close-btn remove-post"></span>
-        </button>
+        {{ admin_button(post.slug, 'remove-post') }}
         {{ post.title }}
         <span class="text-muted"> by {{ get_username(post.user_id) }}</span>
       </a>
@@ -42,10 +42,11 @@
       {% for user in users %}
 
     <a href="#" class="list-group-item">
-      <button id="{{ user.id }}" type="button" class="close">
-        <span class="glyphicon glyphicon-remove close-btn remove-user"></span>
-      </button>{{ user.username }}
-      {% if user.role == 1 %}&nbsp;<span class="glyphicon glyphicon-eye-open"></span>{% endif %}
+      {{ admin_button(user, 'remove-user') }}
+      {{ admin_button(user, 'toggle-admin') }}
+
+      {{ user.username }}
+      &nbsp;<span  class="{% if user.role == 1 %}glyphicon glyphicon-eye-open{% endif %} role-icon"></span>
     </a>
 
     {% endfor %}

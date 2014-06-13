@@ -67,6 +67,34 @@
         });
     });
 
+    $('.toggle-admin').click(function() {
+        var ths = $(this)
+        var id = $(this).parent().attr('id');
+
+        var html = "&nbsp;<span class='glyphicon glyphicon-eye-open'></span>";
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: {
+                'id' : id,
+                'type' : 'TOGGLE_ADMIN',
+            },
+
+            success: function (result) {
+                // TODO: perhaps handle the error a better way?
+                if (result == '1') {
+                    ths.removeClass('green glyphicon-eye-open').addClass('red glyphicon-eye-close');
+                    ths.parent().next('.role-icon').addClass('glyphicon glyphicon-eye-open');
+                }
+                if (result == '0') {
+                    ths.removeClass('red glyphicon-eye-close').addClass('green glyphicon-eye-open');
+                    ths.parent().next('.role-icon').removeClass('glyphicon glyphicon-eye-open');
+                }
+            }
+        });
+    });
+
 
 
 })(window.jQuery);
