@@ -30,6 +30,6 @@ There are a few steps you need to take in order to get the blog to work on a dev
     * `python db_migrate.py` to create a migration
     * `python db_upgrade.py` to upgrade the database version
 
-3. You might want to edi the config.py file, especially change the 'dummy' secret key
+3. You might want to edit the config.py file, especially change the 'dummy' secret key
 
 3. `python run.py` to run the app on a dev server.
