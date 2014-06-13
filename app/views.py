@@ -209,21 +209,39 @@ def admin():
             else:
                 return "error"
 
-        # delete posts
+        # toggle admin status
         if request.form.get('type') == "TOGGLE_ADMIN":
             id = request.form.get('id')
             u = models.User.query.filter_by(id=id).first()
             role = u.role
 
             # toggle the user role
-            if role == ROLE_ADMIN:
+            if role == ROLE_ADMIN and current_user != u:
                 u.role = ROLE_USER
-            else:
+            elif role == ROLE_USER:
                 u.role = ROLE_ADMIN
+            else:
+                return "delete_self_error"
 
             db.session.commit()
 
             return str(u.role)
+
+        # delete users
+        if request.form.get('type') == "GET_USER_DATA":
+            id = request.form.get('id')
+            u = models.User.query.filter_by(id=id).first()
+
+            d = {}
+
+            d["name"] = u.username
+            if u.role == ROLE_ADMIN:
+                d["role"] = "admin"
+            else:
+                d["role"] = "user"
+            d["posts"] = u.posts.count()
+
+            return jsonify(d)
 
 
 

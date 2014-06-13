@@ -91,6 +91,29 @@
                     ths.removeClass('red glyphicon-eye-close').addClass('green glyphicon-eye-open');
                     ths.parent().next('.role-icon').removeClass('glyphicon glyphicon-eye-open');
                 }
+                if (result == 'delete_self_error') {
+                    flash("You can't remove your own admin status.", "alert-warning");
+                }
+            }
+        });
+    });
+
+    $('.click-user').click(function() {
+        var ths = $(this)
+        var id = $(this).attr('id');
+
+        $.ajax({
+            url: '',
+            type: 'POST',
+            data: {
+                'id' : id,
+                'type' : 'GET_USER_DATA',
+            },
+
+            success: function (result) {
+                $('#details-name').html(result["name"]);
+                $('#details-role').html(result["role"]);
+                $('#details-posts').html(result["posts"]);
             }
         });
     });

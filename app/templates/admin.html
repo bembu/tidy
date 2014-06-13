@@ -39,12 +39,11 @@
 
     <h4 class="list-group-item-heading">Manage users:</h4>
 
-      {% for user in users %}
+    {% for user in users %}
 
-    <a href="#" class="list-group-item">
+    <a href="#" id="{{ user.id }}" class="list-group-item click-user">
       {{ admin_button(user, 'remove-user') }}
       {{ admin_button(user, 'toggle-admin') }}
-
       {{ user.username }}
       &nbsp;<span  class="{% if user.role == 1 %}glyphicon glyphicon-eye-open{% endif %} role-icon"></span>
     </a>
@@ -52,6 +51,16 @@
     {% endfor %}
 
   </div>
+
+  <div class="list-group">
+    <div class="list-group-item">
+      <h4 class="list-group-item-heading"><span id="details-name">User Details</span></h4>
+    </div>
+      <div class="list-group-item">Role: <span id="details-role" class="text-muted">Peter</span></div>
+      <div class="list-group-item">Posts: <span id="details-posts" class="text-muted">12</span></div>
+    </div>
+  </div>
+
 </div>
 
 </div>
