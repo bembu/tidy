@@ -19,5 +19,5 @@ MAX_FILE_SIZE = 2 * 1024 * 1024 # 2 MB
 TAG_DELIM = " "
 
 TITLE = "Bembu's blog"
-DESCRIPTION = "Welcome to my almighty blog."
-WELCOME = "Welcome to my cool blog."
+WELCOME = "Welcome to my blog!"
+DESCRIPTION = "I am trying to fill this blog with mostly everything that interests me. Sometimes in english, sometimes finnish - it really depends on the subject."
