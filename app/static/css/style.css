@@ -102,9 +102,13 @@ small.text-muted {
   font-weight: bold;
 }
 
-.admin-btn {
+.admin-icon {
   font-size: 0.8em;
   float:right;
+}
+
+.admin-btn {
+  margin-left: 0.5em;
 }
 
 .red {

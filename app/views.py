@@ -1,6 +1,6 @@
 from app import app, db, models, lm
 
-from flask import render_template, flash, redirect, session, url_for, request, g, url_for, send_from_directory, jsonify
+from flask import render_template, flash, redirect, session, url_for, request, g, url_for, send_from_directory, jsonify, make_response
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from werkzeug.utils import secure_filename
 from forms import LoginForm, NewUserForm, NewPostForm
@@ -247,6 +247,14 @@ def admin():
 
     return render_template("admin.html", posts=posts, users=users, \
                            get_username=get_username)
+
+@app.route('/export/<slug>')
+def export_post(slug):
+    post = models.Post.query.filter_by(slug=slug).first()
+    md = post.body
+    response = make_response(md)
+    response.headers["Content-Disposition"] = "attachment; filename=" + slug + ".md"
+    return response
 
 @app.route('/uploads/<path:filename>')
 def host_img(filename):

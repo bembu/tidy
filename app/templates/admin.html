@@ -12,6 +12,11 @@
   <div class="divider">
     <div class="col-sm-12"><hr></div>
   </div>
+
+  <div class="col-sm-12">
+    <button type="button" class="btn btn-sm btn-success admin-delete-mode">Delete OFF</button><hr>
+  </div>
+
 </div>
 
 <div class="row">
@@ -25,6 +30,7 @@
 
       <a href="{{ url_for("posts", slug=post.slug) }}" class="list-group-item">
         {{ admin_button(post.slug, 'remove-post') }}
+        {{ admin_button(post.slug, 'export-post') }}
         {{ post.title }}
         <span class="text-muted"> by {{ get_username(post.user_id) }}</span>
       </a>

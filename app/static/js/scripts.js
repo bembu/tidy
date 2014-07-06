@@ -1,5 +1,9 @@
 
 (function($){
+
+    $(".remove-user, .remove-post").parent().hide();
+    var deleteMode = false;
+
     function slugify(Text)
     {
         return Text
@@ -119,6 +123,29 @@
         });
     });
 
+    $('.export-post').click(function() {
+        // A stupid hack, but couldn't get the layout to work with <a> tags yet, only buttons.
+        event.preventDefault();
+        window.location = '/export/' + $(this).parent().attr('id');
+    });
+
+
+    $('.admin-delete-mode').click(function() {
+        if (!deleteMode) {
+            $(".remove-user, .remove-post").parent().show();
+            $(this).removeClass("btn-success");
+            $(this).addClass("btn-danger");
+            $(this).html("Delete ON");
+            deleteMode = true;
+        } else {
+            $(".remove-user, .remove-post").parent().hide();
+            $(this).removeClass("btn-danger");
+            $(this).addClass("btn-success");
+            $(this).html("Delete OFF");
+            deleteMode = false;
+        }
+
+    });
 
 
 })(window.jQuery);
