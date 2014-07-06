@@ -14,7 +14,9 @@
   </div>
 
   <div class="col-sm-12">
-    <button type="button" class="btn btn-sm btn-success admin-delete-mode">Delete OFF</button><hr>
+    <button type="button" class="btn btn-success admin-delete-mode">Delete OFF</button>
+    <a href="{{ url_for("export_all") }}" type="button" class="btn btn-success">
+    <span class="glyphicon glyphicon-download"></span> Export posts</a><hr>
   </div>
 
 </div>

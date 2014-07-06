@@ -1,6 +1,6 @@
 from app import app, db, models, lm
 
-from flask import render_template, flash, redirect, session, url_for, request, g, url_for, send_from_directory, jsonify, make_response
+from flask import render_template, flash, redirect, session, url_for, request, g, url_for, send_from_directory, jsonify, make_response, send_file
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from werkzeug.utils import secure_filename
 from forms import LoginForm, NewUserForm, NewPostForm
@@ -13,6 +13,8 @@ from config import POSTS_PER_PAGE, UPLOAD_FOLDER, ALLOWED_EXTENSIONS, THUMB_FOLD
 from unicodedata import normalize
 from PIL import Image
 from functools import wraps
+from StringIO import StringIO
+import zipfile
 
 import helper
 
@@ -255,6 +257,23 @@ def export_post(slug):
     response = make_response(md)
     response.headers["Content-Disposition"] = "attachment; filename=" + slug + ".md"
     return response
+
+@app.route('/export')
+def export_all():
+
+    zp_io = StringIO()
+    zp = zipfile.ZipFile(zp_io, 'w')
+
+    posts = models.Post.query
+    for post in posts:
+        filename = post.slug + ".md"
+        zp.writestr(filename, post.body.encode('utf-8'))
+
+    zp.close()
+    zp_io.seek(0)
+
+    return send_file(zp_io, attachment_filename="exported.zip", as_attachment=True)
+
 
 @app.route('/uploads/<path:filename>')
 def host_img(filename):
