@@ -37,17 +37,17 @@ def admin_required(f):
 @app.route('/<int:page>')
 def index(page=1):
     # note: currently we just filter the 'about' page out
-    #posts = models.Post.query.order_by(desc(models.Post.timestamp))\
-    #.filter(models.Post.slug != "about")\
-    #.paginate(page, POSTS_PER_PAGE, False)
+    posts = models.Post.query.order_by(desc(models.Post.timestamp))\
+    .filter(models.Post.slug != "about")\
+    .paginate(page, POSTS_PER_PAGE, False)
 
     # Filter posts by tags, so that 'draft' and 'about' tags are not shown on
     # front page.
-
+    """
     posts = models.Post.query.join(models.Post.tags)\
     .filter(~models.Post.tags.any(models.Tag.name.in_(['about', 'draft'])))\
     .order_by(desc(models.Post.timestamp))\
-    .paginate(page, POSTS_PER_PAGE, False)
+    .paginate(page, POSTS_PER_PAGE, False)"""
 
     return render_template("index.html", posts=posts, \
                            get_username=get_username)
