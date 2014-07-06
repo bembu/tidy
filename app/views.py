@@ -43,8 +43,9 @@ def index(page=1):
 
     # Filter posts by tags, so that 'draft' and 'about' tags are not shown on
     # front page.
+
     posts = models.Post.query.join(models.Post.tags)\
-    .filter(~models.Post.tags.any(models.Tag.name.in_(['draft', 'about'])))\
+    .filter(~models.Post.tags.any(models.Tag.name.in_(['about', 'draft'])))\
     .order_by(desc(models.Post.timestamp))\
     .paginate(page, POSTS_PER_PAGE, False)
 
