@@ -21,3 +21,5 @@ TAG_DELIM = " "
 TITLE = "Bembu's blog"
 WELCOME = "Welcome to my blog!"
 DESCRIPTION = "Random stuff about things that interest me. Sometimes in english, sometimes in finnish - it really depends on the subject. Currently I am writing about my exchange studies in Germany."
+
+DISQUS_SHORT = "bembunet"
