@@ -2,6 +2,8 @@
 
 A neat and tidy Flask-powered blog engine
 
+A working version can be found ![here](http://bembu.net)
+
 ![](https://raw.githubusercontent.com/bembu/tidy/master/images/preview.png)
 
 #### Currently there is a support for:
